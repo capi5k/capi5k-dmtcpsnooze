@@ -12,5 +12,5 @@ task :automatic do
  puts "Welcome to automatic deployment".bold.blue
 end
 
-after "automatic", "xp5k"
+after "automatic", "xp5k", "puppet", "nfs", "dmtcpsnooze"
 
