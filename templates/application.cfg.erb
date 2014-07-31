@@ -1,0 +1,50 @@
+################ Networking ####################
+## Listen address (default: listen on all interfaces)
+network.listen.address = #replace by the bootstrap address
+
+## Control
+network.listen.controlDataPort = # replace by the bootstrap port
+
+## Database
+database.type = memory
+
+## Cluster Manager
+cluster.manager.type = Snooze
+
+## BootStrapAddr
+cluster.bootstrapNodes = localhost:5000,192.168.0.2:5001
+
+## ThreadPoolSize
+cluster.serviceSize = 10
+
+## Polling Interval(s)
+cluster.pollingInterval = 1
+
+## Polling Timeout(s)
+cluster.pollingTimeout = 60
+
+## Connection Timeout(s)
+cluster.connectionTimeout = 120
+
+## Default Username
+cluster.username = root
+
+## Default Password
+cluster.password = root
+
+## dmtcp default options
+dmtcp.port = 7779
+dmtcp.interval = 0
+dmtcp.ckptdir = ./
+dmtcp.tmpdkr = /tmp
+
+## 
+# Storage section
+##
+
+storage.type = NFS
+storage.endpoint = <%= @storageEndpoint %>
+
+## NFS Settings
+storage.nfs.server.export= /opt/dmtcp
+storage.nfs.client.mountDir = /opt/nfs/dmtcp
