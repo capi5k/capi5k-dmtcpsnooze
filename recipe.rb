@@ -10,7 +10,7 @@ load "#{dmtcpsnooze_path}/roles.rb"
 load "#{dmtcpsnooze_path}/roles_definition.rb"
 load "#{dmtcpsnooze_path}/output.rb"
 
-#set :dmtcpsnooze_url, "https://ci.inria.fr/snooze-software/job/dmtcp-snooze/ws/target/DMTCPSnooze-0.0.1-dist.tar.gz"
+set :dmtcpsnooze_url, "https://ci.inria.fr/snooze-software/job/dmtcp-snooze/ws/target/DMTCPSnooze-0.0.1-dist.tar.gz"
 set :proxy, "http_proxy=http://proxy:3128 https_proxy=http://proxy:3128"
 set :wget_p, "#{proxy} wget"
 
@@ -34,8 +34,8 @@ namespace :dmtcpsnooze do
 
   task :install, :roles => [:dmtcpsnooze] do
     set :user, "#{g5k_user}"
-    #run "#{wget_p} #{dmtcpsnooze_url} -O /tmp/dmtcpsnooze.tar.gz"
-    upload "/Users/msimonin/snooze/dmtcp-snooze/target/DMTCPSnooze-0.0.1-dist.tar.gz", "/tmp/dmtcpsnooze.tar.gz", :via => :scp 
+    run "#{wget_p} #{dmtcpsnooze_url} -O /tmp/dmtcpsnooze.tar.gz"
+    #upload "/Users/msimonin/snooze/dmtcp-snooze/target/DMTCPSnooze-0.0.1-dist.tar.gz", "/tmp/dmtcpsnooze.tar.gz", :via => :scp 
     run "cd /tmp && tar -xvzf /tmp/dmtcpsnooze.tar.gz"
     run "cd /tmp && mv DMTCP* DMTCPsnooze"
   end
