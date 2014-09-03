@@ -1,9 +1,9 @@
 ################ Networking ####################
 ## Listen address (default: listen on all interfaces)
-network.listen.address = #replace by the bootstrap address
+network.listen.address = localhost
 
 ## Control
-network.listen.controlDataPort = # replace by the bootstrap port
+network.listen.controlDataPort = 4001
 
 ## Database
 database.type = memory
@@ -12,7 +12,7 @@ database.type = memory
 cluster.manager.type = Snooze
 
 ## BootStrapAddr
-cluster.bootstrapNodes = localhost:5000,192.168.0.2:5001
+cluster.bootstrapNodes = 
 
 ## ThreadPoolSize
 cluster.serviceSize = 10
@@ -27,10 +27,10 @@ cluster.pollingTimeout = 60
 cluster.connectionTimeout = 120
 
 ## Default Username
-cluster.username = root
+cluster.username = work
 
 ## Default Password
-cluster.password = root
+cluster.password = work
 
 ## dmtcp default options
 dmtcp.port = 7779
@@ -42,9 +42,26 @@ dmtcp.tmpdkr = /tmp
 # Storage section
 ##
 
-storage.type = NFS
+# Storage type ( NFS, S3)
+storage.type = S3
 storage.endpoint = <%= @storageEndpoint %>
 
-## NFS Settings
+# NFS Settings
 storage.nfs.server.export= /opt/dmtcp
-storage.nfs.client.mountDir = /opt/nfs/dmtcp
+# it becomes commin to all storage type : this
+# is the local directory where checkpoints are saved
+# in case of NFS this directory is created and mounted
+# in case of S3 it is just created
+storage.nfs.client.mountDir = /home/work/checkpoints
+
+# S3 specific parameters
+storage.s3.access_key = 12345
+storage.s3.private_key = 12345
+
+
+## Local controller monitor settings
+monitor.transport = RABBITMQ
+monitor.port = 5672
+monitor.username = snooze
+monitor.password = snooze
+monitor.vhost = snooze-vhost
