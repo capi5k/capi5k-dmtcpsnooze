@@ -12,7 +12,7 @@ database.type = memory
 cluster.manager.type = Snooze
 
 ## BootStrapAddr
-cluster.bootstrapNodes = 
+cluster.bootstrapNodes = localhost:5000,192.168.0.2:5001
 
 ## ThreadPoolSize
 cluster.serviceSize = 10
@@ -21,16 +21,25 @@ cluster.serviceSize = 10
 cluster.pollingInterval = 1
 
 ## Polling Timeout(s)
-cluster.pollingTimeout = 60
+cluster.pollingTimeout = 120
 
 ## Connection Timeout(s)
-cluster.connectionTimeout = 120
+cluster.connectionTimeout = 360
 
 ## Default Username
 cluster.username = work
 
 ## Default Password
 cluster.password = work
+
+
+## EC2 settings
+cluster.ec2.accessKey = b5868e6ef0ff488fbe4a81fdf86ca233
+cluster.ec2.secretKey = a8742ea8cbed4bebb957533ee7a2f782
+cluster.ec2.endpoint = http://graphene-85-kavlan-14.nancy.grid5000.fr:8773/services/Cloud
+cluster.ec2.keyName = jdoe_key
+cluster.ec2.securityGroup = vm_jdoe_sec_group
+
 
 ## dmtcp default options
 dmtcp.port = 7779
@@ -43,8 +52,9 @@ dmtcp.tmpdkr = /tmp
 ##
 
 # Storage type ( NFS, S3)
-storage.type = S3
+storage.type = NFS
 storage.endpoint = <%= @storageEndpoint %>
+storage.checkpointDirectory = /home/work/checkpoints
 
 # NFS Settings
 storage.nfs.server.export= /opt/dmtcp
@@ -52,7 +62,7 @@ storage.nfs.server.export= /opt/dmtcp
 # is the local directory where checkpoints are saved
 # in case of NFS this directory is created and mounted
 # in case of S3 it is just created
-storage.nfs.client.mountDir = /home/work/checkpoints
+storage.nfs.client.mountDir = /home/work/checkpoints/nfs
 
 # S3 specific parameters
 storage.s3.access_key = 12345
